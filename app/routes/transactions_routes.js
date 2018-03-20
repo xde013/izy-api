@@ -44,4 +44,36 @@ module.exports = function(app, db) {
                 }
             })
     })
+
+    /* "/api/top/:limit"
+     *
+     *  GET: Top events sorted by total number of transactions in desc order
+     *  @limit: size of event list ouputed
+     *  
+     */
+    app.get("/api/top/:limit", (req, res) => {
+        let limit = parseInt(req.params.limit)
+        if (limit > 0) {
+            db.collection(TRANSACTIONS_COLLECTION).aggregate([{
+                    // Use group operator
+                    "$group": {
+                        // Point group key to the unique event name
+                        "_id": "$event_name",
+                        // Will add 1 for each matched document
+                        "total": { "$sum": 1 }
+                    }
+                },
+                { $sort: { total: -1 } },
+                { $limit: limit }
+            ]).toArray((err, events) => {
+                if (err) {
+                    handleError(res, err.message, "Failed to get TOP" + limit)
+                } else {
+                    res.status(200).json(events)
+                }
+            })
+        } else {
+            handleError(res, '', "bad request", 400)
+        }
+    })
 };
