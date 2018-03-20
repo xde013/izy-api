@@ -21,4 +21,27 @@ module.exports = function(app, db) {
             }
         })
     })
+
+    /* "/api/events/:name"
+     *
+     *   GET: find event's transactions by exact event_name
+     *  
+     */
+    app.get("/api/events/:name", (req, res) => {
+        let event_name = req.params.name
+        db.collection(TRANSACTIONS_COLLECTION).find({
+                "event_name": event_name
+            })
+            .toArray((err, events) => {
+                if (err) {
+                    handleError(res, err.message, "Failed to get transactions..")
+                } else {
+                    if (events.length > 0) {
+                        res.status(200).json(events)
+                    } else {
+                        handleError(res, '', "Something went wrong", 400)
+                    }
+                }
+            })
+    })
 };
