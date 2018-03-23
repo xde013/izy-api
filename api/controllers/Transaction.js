@@ -58,7 +58,9 @@ exports.top = function(req, res) {
                     "total": { "$sum": 1 }
                 }
             },
+            // Sort in desc order
             { $sort: { total: -1 } },
+            // Set limit
             { $limit: limit }
         ]).exec((err, events) => {
             err ? handleError(res, err.message, "Failed to get TOP" + limit) : res.status(200).json(events)
