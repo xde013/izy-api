@@ -1,6 +1,6 @@
 # izypay
 
-> A simple REST API for izypay, to see it in action head to live demo <a src="https://izypay.herokuapp.com/api/transactions"> *here*</a>. 
+> A simple REST API for izypay, to see it in action head to live demo [here](https://izypay.herokuapp.com/api/transactions "API live demo"). 
 
 ## Run localy
 ``` bash
