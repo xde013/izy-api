@@ -12,7 +12,7 @@ npm run dev
 ```
 ------------
 ### API endpoints
-- ***api/transactions *** > Return all transactions.
+- ***api/transactions*** > Return all transactions.
 - ***api/top/:n***  > Return TOP n events with most transactions in desc order.
 - ***api/events/:name***  > Return all transactions by event_:name.
 
