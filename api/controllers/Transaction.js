@@ -3,9 +3,9 @@ const TRANSACTION_COUNT = 1000
 const Transaction = require('../models/transaction')
 
 // Generic for now to handle errors, used by all endpoints.
-handleError: (res, reason, message, code) => {
+const handleError = (res, reason, message, code) => {
     console.log("ERROR: " + reason);
-    res.status(code || 500).json({ "error": message });
+    res.status(code || 500).json({ "error": message })
 }
 
 /*  "/api/transactions"
@@ -65,5 +65,7 @@ exports.top = function(req, res) {
         ]).exec((err, events) => {
             err ? handleError(res, err.message, "Failed to get TOP" + limit) : res.status(200).json(events)
         })
+    } else {
+        handleError(res, '', "Something went wrong", 400)
     }
 }
