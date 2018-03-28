@@ -1,6 +1,6 @@
 # izypay
 
-> A simple REST API for izypay, to see it in action head to live demo [here](https://izypay.herokuapp.com/api/transactions "API live demo"). 
+> A simple REST API for izypay, to see it in action head to live demo [here](https://izypay.herokuapp.com/api/transactions "API live demo"). You can also find a live example UI exploiting the API using VueJS [here](https://izy-1337.firebaseapp.com "Live UI example using VueJS")
 
 ## Run localy
 ``` bash
